@@ -1,0 +1,24 @@
+{
+    "name": "axguowen/ctyun-cdn",
+    "description": "Ctyun php sdk cdn package",
+    "keywords": [
+        "ctyun",
+        "cdn"
+    ],      
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "axguowen",
+            "email": "axguowen@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "axguowen/http-client": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "axguowen\\ctyun\\services\\cdn\\": "src"
+        }
+    }
+}
