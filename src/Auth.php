@@ -9,7 +9,7 @@
 // | Author: axguowen <axguowen@qq.com>
 // +----------------------------------------------------------------------
 
-namespace axguowen\ctyun\services\cdn\common;
+namespace axguowen\ctyun\services\cdn;
 
 class Auth
 {

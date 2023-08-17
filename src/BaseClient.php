@@ -13,7 +13,6 @@ namespace axguowen\ctyun\services\cdn;
 
 use axguowen\HttpClient;
 use axguowen\httpclient\Error;
-use axguowen\ctyun\services\cdn\common\Auth;
 
 abstract class BaseClient
 {
