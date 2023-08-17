@@ -59,10 +59,13 @@ abstract class BaseClient
         // 发送请求
         $ret = HttpClient::post($this->baseUrl . $path, $body, $headers);
         if (!$ret->ok()) {
-            return [null, new Error($path, $ret)];
+            throw new \Exception($ret->error, $ret->statusCode);
         }
-        $r = ($ret->body === null) ? [] : $ret->json();
-        return [$r, null];
+        // 如果响应体为空
+        if(!is_null($ret->body)){
+            return $ret->json();
+        }
+        return [];
     }
 
     /**
@@ -84,9 +87,12 @@ abstract class BaseClient
         // 发送请求
         $ret = HttpClient::get($this->baseUrl . $path, $headers);
         if (!$ret->ok()) {
-            return [null, new Error($path, $ret)];
+            throw new \Exception($ret->error, $ret->statusCode);
         }
-        $r = ($ret->body === null) ? [] : $ret->json();
-        return [$r, null];
+        // 如果响应体为空
+        if(!is_null($ret->body)){
+            return $ret->json();
+        }
+        return [];
     }
 }
