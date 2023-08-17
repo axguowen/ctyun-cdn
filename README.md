@@ -10,11 +10,11 @@ composer require axguowen/ctyun-cdn
 
 ## 创建刷新URL任务
 ~~~php
-use axguowen\ctyun\services\cdn\common\Auth;
-use axguowen\ctyun\services\cdn\Cdn;
+use axguowen\ctyun\services\cdn\Auth;
+use axguowen\ctyun\services\cdn\CdnClient;
 // 实例化授权类
 $ctyunAuth = new Auth('CTYUN_ACCESSID', 'CTYUN_ACCESSSECRET');
-$refresh = new Refresh($ctyunAuth);
+$cdnClient = new CdnClient($ctyunAuth);
 // 刷新链接
-$refresh->refreshUrls(['https://xxxx/xxxx.html', 'https://xxxx/ccccc.html']);
+$cdnClient->refreshManageCreate(['https://xxxx/xxxx.html', 'https://xxxx/ccccc.html']);
 ~~~
