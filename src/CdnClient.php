@@ -318,6 +318,23 @@ class CdnClient extends BaseClient
     }
 
     /**
+     * 获取域名归属权校验信息
+     * @access public
+     * @param string $domain 域名
+     * @return array
+     * @link https://vip.ctcdn.cn/help/10005260/10014785/common/10016169
+     */
+    public function howToVerify($domain)
+    {
+        // 请求体
+        $body = [
+            'domain' => $domain,
+        ];
+        // 发送请求
+        return $this->get('/api/v1/verify_domain_ownership/verify_content', $body);
+    }
+
+    /**
      * 域名归属权校验
      * @access public
      * @param string $domain 域名
@@ -521,7 +538,7 @@ class CdnClient extends BaseClient
      * @return array
      * @link https://vip.ctcdn.cn/help/10005260/10014785/common/10015631
      */
-    public function domainQueryDomainCertInfo($domain, $productCode)
+    public function domainQueryDomainCertInfo($domain, $productCode = '008')
     {
         // 请求体
         $body = [
@@ -590,6 +607,27 @@ class CdnClient extends BaseClient
         $body = array_merge($body, $options);
         // 发送请求
         return $this->post('/api/v1/domain/batch_update_configuration_information', $body);
+    }
+
+    /**
+     * 删除/启用/停用域名
+     * @access public
+     * @param string|array $domain 域名
+     * @param int $status 状态操作类型
+     * @param string $productCode 产品类型
+     * @return array
+     * @link https://vip.ctcdn.cn/help/10005260/10014785/common/10014803
+     */
+    public function domainChangeStatus($domain, $status = 3, $productCode = '008')
+    {
+        // 请求体
+        $body = [
+            'domain' => $domain,
+            'status' => $status,
+            'product_code' => $productCode,
+        ];
+        // 发送请求
+        return $this->post('/api/v1/domain/change_status', $body);
     }
 
     /**
