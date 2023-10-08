@@ -371,6 +371,23 @@ class CdnClient extends BaseClient
     }
 
     /**
+     * 查询域名是否存在在途工单
+     * @access public
+     * @param string $domain 域名
+     * @return array
+     * @link https://vip.ctcdn.cn/help/10005260/10014785/common/10020372
+     */
+    public function domainIsExistOnwayOrder($domain)
+    {
+        // 请求体
+        $body = [
+            'domain' => $domain,
+        ];
+        // 发送请求
+        return $this->get('/api/v1/domain/is_exist_onway_order', $body);
+    }
+
+    /**
      * 查询域名列表及域名的基础信息
      * @access public
      * @param array $options 查询参数
