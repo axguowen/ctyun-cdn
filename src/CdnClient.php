@@ -430,32 +430,23 @@ class CdnClient extends BaseClient
     /**
      * 新增加速域名
      * @access public
-     * @param string $domain 要新增的域名
-     * @param array $origin 源站信息
-     * @param string $productCode 产品类型
-     * @param int $wafEnable 是否开启安全WAF防护
-     * @param int $areaScope 加速范围
+     * @param string $options 要新增的域名参数
      * @return array
      * @link https://vip.ctcdn.cn/help/10005260/10014785/common/10014776
      */
-    public function domainManage($domain, $origin, $productCode = '008', $wafEnable = null, $areaScope = null)
+    public function domainManage($options)
     {
         // 请求体
-        $body = [
+        $default = [
             'action' => 1,
-            'domain' => $domain,
-            'origin' => $origin,
-            'product_code' => $productCode,
+            'domain' => '',
+            'origin' => [],
+            'product_code' => '008',
+            'req_host' => '',
         ];
 
-        // 如果指定是否开启安全WAF防护
-        if(!is_null($wafEnable)){
-            $body['waf_enable'] = $wafEnable;
-        }
-        // 如果指定加速范围
-        if(!is_null($areaScope)){
-            $body['area_scope'] = $areaScope;
-        }
+        // 合并默认参数和用户指定的参数
+        $body = array_merge($default, $options);
         // 发送请求
         return $this->post('/api/v1/domain/manage', $body);
     }
