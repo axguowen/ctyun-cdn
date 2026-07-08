@@ -1330,4 +1330,30 @@ class CdnClient extends BaseClient
         // 发送请求
         return $this->post('/api/v1/uv', $body);
     }
+
+    /**
+     * 检测域名ICP备案状态
+     * @param array $options None
+     * @param string $domain [<the domain name>]
+     * @return array
+     */
+    public function checkDomainICP($domain, $options = [])
+    {
+        // 获取域名详情
+        $domainInfoResult = $this->domainInfo($domain);
+        // 如果错误
+        if(is_null($domainInfoResult[0])){
+            return $domainInfoResult;
+        }
+        // 获取域名详情
+        $domainInfo = $domainInfoResult[0];
+        // 备案状态
+        $status = 0;
+        // 如果ICP备案状态为空
+        if(isset($domainInfo['record_status']) && $domainInfo['record_status'] == 'true'){
+            $status = 1;
+        }
+        // 返回
+        return [['status' => $status], null];
+    }
 }
