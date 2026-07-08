@@ -1340,13 +1340,11 @@ class CdnClient extends BaseClient
     public function checkDomainICP($domain, $options = [])
     {
         // 获取域名详情
-        $domainInfoResult = $this->domainInfo($domain);
+        $domainInfo = $this->domainInfo($domain);
         // 如果错误
-        if(is_null($domainInfoResult[0])){
-            return $domainInfoResult;
+        if($domainInfo['code'] != 100000){
+            return [null, new \Exception($domainInfo['message'])];
         }
-        // 获取域名详情
-        $domainInfo = $domainInfoResult[0];
         // 备案状态
         $status = 0;
         // 如果ICP备案状态为空
