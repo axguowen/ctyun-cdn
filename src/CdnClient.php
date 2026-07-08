@@ -1357,6 +1357,6 @@ class CdnClient extends BaseClient
             $stoped = 1;
         }
         // 返回
-        return [['status' => $status, 'stoped' => $stoped], null];
+        return [['status' => $status, 'stoped' => $stoped,], null];
     }
 }
