@@ -1347,11 +1347,16 @@ class CdnClient extends BaseClient
         }
         // 备案状态
         $status = 0;
+        $stoped = 0;
         // 如果ICP备案状态为空
         if(isset($domainInfo['record_status']) && $domainInfo['record_status'] == 'true'){
             $status = 1;
         }
+        // 如果ICP备案状态为空
+        if(isset($domainInfo['status']) && $domainInfo['status'] == 6){
+            $stoped = 1;
+        }
         // 返回
-        return [['status' => $status], null];
+        return [['status' => $status, 'stoped' => $stoped], null];
     }
 }
